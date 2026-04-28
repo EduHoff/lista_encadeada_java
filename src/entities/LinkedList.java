@@ -3,18 +3,19 @@ package entities;
 public class LinkedList<T> {
 	
 	private Node<T> head;
+	private int size=0;
 	
 	public void addFirst(T value) {
-		
 		Node<T> new_node  = new Node<>(value);
+		size++;
 		
 		new_node.setNext(head);
 		head = new_node;
 	}
 	
 	public void addLast(T value) {
-	
 		Node<T> new_node = new Node<>(value);
+		size++;
 		
 		if (head == null) {
             head = new_node;
@@ -44,5 +45,9 @@ public class LinkedList<T> {
 		}
 		System.out.print("}");
 		System.out.println();
+	}
+
+	public int length() {
+		return size;
 	}
 }
