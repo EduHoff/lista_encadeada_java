@@ -1,5 +1,5 @@
 services:
-  exerciciojava_unisenaipr_20260422:
+  lista_encadeada_java:
     build: .
     volumes:
       - .:/app
