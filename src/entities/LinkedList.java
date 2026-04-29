@@ -3,12 +3,16 @@ package entities;
 public class LinkedList<T> {
 	
 	private Node<T> head;
+	private Node<T> tail;
 	private int size=0;
 	
 	public void addFirst(T value) {
 		Node<T> new_node  = new Node<>(value);
 		
 		new_node.setNext(head);
+		if(head == null){
+			tail = new_node;
+		}
 		head = new_node;
 		size++;
 	}
@@ -18,16 +22,13 @@ public class LinkedList<T> {
 		
 		if (head == null) {
             head = new_node;
+			tail = new_node;
 			size++;
             return;
         }
 		
-		Node<T> aux = head;
-		while(aux.getNext() != null) {
-			aux = aux.getNext();
-		}
-		
-		aux.setNext(new_node);
+		tail.setNext(new_node);
+		tail = new_node;
 		size++;
 	}
 
