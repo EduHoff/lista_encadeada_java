@@ -96,6 +96,31 @@ public class LinkedList<T> {
 		tail.setNext(null);
 		size--;
 	}
+
+	public void removeMiddle(int index) {
+		if(index < 0 || index >= size) throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+		
+		if(index == 0) {
+			removeFirst();
+			return;
+		}
+
+		if(index == size-1){
+			removeLast();
+			return;
+		}
+		
+		Node<T> aux = head;
+		int count = 0;
+		while(count != index-1) {
+			aux = aux.getNext();
+			count++;
+		}
+
+		aux.getNext().getNext().setPrev(aux);
+		aux.setNext(aux.getNext().getNext());
+		size--;
+	}
 	
 	public void printList() {
 		if (head == null) {

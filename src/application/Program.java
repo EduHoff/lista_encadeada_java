@@ -48,5 +48,19 @@ public class Program {
         System.out.println("removeLast (" + lista_ligada.length() + " elementos):");
         lista_ligada.printList();
         System.out.println();
+
+        
+        lista_ligada.removeMiddle(3);
+        System.out.println("removeMiddle (" + lista_ligada.length() + " elementos):");
+        lista_ligada.printList();
+        System.out.println();
+
+
+        for(int i=0; i<= 25; i++) {
+        	lista_ligada.removeLast();
+        }
+        System.out.println("Lista vazia (" + lista_ligada.length() + " elementos):");
+        lista_ligada.printList();
+        System.out.println();
     }
 }
