@@ -11,8 +11,13 @@ public class LinkedList<T> {
 		
 		new_node.setNext(head);
 		if(head == null){
+			head = new_node;
 			tail = new_node;
+			size++;
+			return;
 		}
+
+		head.setPrev(new_node);
 		head = new_node;
 		size++;
 	}
@@ -28,6 +33,7 @@ public class LinkedList<T> {
         }
 		
 		tail.setNext(new_node);
+		new_node.setPrev(tail);
 		tail = new_node;
 		size++;
 	}
@@ -55,12 +61,43 @@ public class LinkedList<T> {
 		}
 
 		new_node.setNext(aux.getNext());
+		new_node.setPrev(aux);
+		aux.getNext().setPrev(new_node);
 		aux.setNext(new_node);
 		size++;
 	}
+
+	public void removeFirst() {
+		if(head == null) {return;}
+
+		if(head.getNext() == null){
+			head = null;
+			tail = null;
+			size--;
+			return;
+		}
+		
+		head = head.getNext();
+		head.setPrev(null);
+		size--;
+	}
+
+	public void removeLast() {
+		if(head == null) {return;}
+
+		if(head.getNext() == null){
+			head = null;
+			tail = null;
+			size--;
+			return;
+		}
+
+		tail = tail.getPrev();
+		tail.setNext(null);
+		size--;
+	}
 	
 	public void printList() {
-		
 		if (head == null) {
 	        System.out.println("{}");
 	        return;
