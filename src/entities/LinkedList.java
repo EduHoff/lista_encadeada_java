@@ -47,16 +47,15 @@ public class LinkedList<T> {
 
 		Node<T> new_node = new Node<>(value);
 		
-		Node<T> aux1 = head;
+		Node<T> aux = head;
 		int count = 0;
 		while(count != index-1) {
-			aux1 = aux1.getNext();
+			aux = aux.getNext();
 			count++;
 		}
 
-		Node<T> aux2 = aux1.getNext();
-		aux1.setNext(new_node);
-		new_node.setNext(aux2);
+		new_node.setNext(aux.getNext());
+		aux.setNext(new_node);
 		size++;
 	}
 	
@@ -68,12 +67,11 @@ public class LinkedList<T> {
 	    }
 		
 		Node<T> aux = head;
-		System.out.print("{ ");
 		while(aux != null) {
-			System.out.print(aux.getValue() + " ");
+			System.out.print(aux.getValue());
+			if(aux.getNext() != null) System.out.print(" -> ");
 			aux = aux.getNext();
 		}
-		System.out.print("}");
 		System.out.println();
 	}
 
