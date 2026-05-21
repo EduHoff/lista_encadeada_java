@@ -6,11 +6,15 @@ public class LinkedList<T> {
 	private Node<T> tail;
 	private int size=0;
 	
+	public boolean isEmpty(){
+		return head == null;
+	}
+
 	public void addFirst(T value) {
 		Node<T> new_node  = new Node<>(value);
 		
 		new_node.setNext(head);
-		if(head == null){
+		if(this.isEmpty()){
 			head = new_node;
 			tail = new_node;
 			size++;
@@ -25,7 +29,7 @@ public class LinkedList<T> {
 	public void addLast(T value) {
 		Node<T> new_node = new Node<>(value);
 		
-		if (head == null) {
+		if (this.isEmpty()) {
             head = new_node;
 			tail = new_node;
 			size++;
@@ -68,7 +72,7 @@ public class LinkedList<T> {
 	}
 
 	public void removeFirst() {
-		if(head == null) {return;}
+		if(this.isEmpty()) return;
 
 		if(head.getNext() == null){
 			head = null;
@@ -83,7 +87,7 @@ public class LinkedList<T> {
 	}
 
 	public void removeLast() {
-		if(head == null) {return;}
+		if(this.isEmpty()) return;
 
 		if(head.getNext() == null){
 			head = null;
@@ -121,6 +125,18 @@ public class LinkedList<T> {
 		aux.setNext(aux.getNext().getNext());
 		size--;
 	}
+
+	public T get(int index) {
+		if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+		
+		Node<T> aux = head;
+		int count = 0;
+		while (count != index) {
+			aux = aux.getNext();
+			count++;
+		}
+		return aux.getValue();
+	}
 	
 	public void printList() {
 		if (head == null) {
@@ -130,7 +146,7 @@ public class LinkedList<T> {
 		
 		Node<T> aux = head;
 		while(aux != null) {
-			System.out.print(aux.getValue());
+			System.out.print(aux.getValue().toString());
 			if(aux.getNext() != null) System.out.print(" -> ");
 			aux = aux.getNext();
 		}
